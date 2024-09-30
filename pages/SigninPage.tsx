@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/hooks/use-toast";
-import  Link  from "next/link";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function SigninPage() {
@@ -24,7 +24,12 @@ export default function SigninPage() {
   const { toast } = useToast();
   const router = useRouter();
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: {
+    target: {
+      name: string;
+      value: string;
+    };
+  }) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -32,7 +37,7 @@ export default function SigninPage() {
     }));
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     // Here you would typically send the data to your backend
     console.log("Form submitted:", formData);
@@ -82,7 +87,7 @@ export default function SigninPage() {
           </Button>
         </CardFooter>
         <CardFooter className="flex justify-center underline text-sm text-muted-foreground">
-          <Link href={"/signup/alumni"}>Don't have an account?</Link>
+          <Link href={"/signup/alumni"}>Don&apos;t have an account?</Link>
         </CardFooter>
       </Card>
     </div>

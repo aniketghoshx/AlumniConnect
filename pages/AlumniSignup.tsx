@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -34,7 +34,12 @@ export default function AlumniSignUp() {
   });
   const { toast } = useToast();
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: {
+    target: {
+      name: string;
+      value: string;
+    };
+  }) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -42,7 +47,7 @@ export default function AlumniSignUp() {
     }));
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     // Here you would typically send the data to your backend
     console.log("Form submitted:", formData);
@@ -130,8 +135,8 @@ export default function AlumniSignUp() {
                   <SelectValue placeholder="Select your degree" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="bachelors">Bachelor's</SelectItem>
-                  <SelectItem value="masters">Master's</SelectItem>
+                  <SelectItem value="bachelors">Bachelor&apos;s</SelectItem>
+                  <SelectItem value="masters">Master&apos;s</SelectItem>
                   <SelectItem value="phd">Ph.D.</SelectItem>
                 </SelectContent>
               </Select>

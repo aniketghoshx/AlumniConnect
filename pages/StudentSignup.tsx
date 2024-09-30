@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -35,7 +35,7 @@ export default function StudentSignUp() {
   });
   const { toast } = useToast();
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: {target:{name:string, value:string}}) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -43,7 +43,7 @@ export default function StudentSignUp() {
     }));
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     // Here you would typically send the data to your backend
     console.log("Form submitted:", formData);
